@@ -213,7 +213,6 @@ class ScaleGen(inkex.Effect):
 				x = float(x) + self.labeloffseth
 				y = float(y) - self.labeloffsetv - font_height_offset
 
-			pos = n*self.res + fontsize/2
 			suffix = self.suffix  #.decode('utf-8') # fix ° (degree char)
 			text = etree.SubElement(group, inkex.addNS('text','svg'))
 
@@ -617,7 +616,7 @@ class ScaleGen(inkex.Effect):
 			self.scaleto, self.scalefrom = self.scalefrom+1, self.scaleto
 			
 		# calc resolution scale factor from external length and the scale distance
-		self.res = self.external_length / (self.scaleto - self.scalefrom)
+		self.res = self.external_length / (self.scaleto - self.scalefrom - 1)
 
 		if self.scaletype == 'straight':
 			for i in range(self.scalefrom, self.scaleto):
